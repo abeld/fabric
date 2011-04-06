@@ -67,6 +67,9 @@ class _EnvDict(AttributeDict):
             raise AttributeError(key)
 
     def __call__(self, *args, **kwargs):
+        if len(args) == 0:
+            return self
+        
         dct = self.__dict__
         if '_ctx_class' not in dct:
             if 'get_settings' not in env:
